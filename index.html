@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mój Blog</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            animation: slideDown 0.8s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        h1 {
+            color: #2c3e50;
+            font-size: 2.8rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            color: #7f8c8d;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        nav {
+            margin-top: 1rem;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #2c3e50;
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        nav a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            transition: left 0.3s ease;
+            z-index: -1;
+        }
+
+        nav a:hover::before {
+            left: 0;
+        }
+
+        nav a:hover {
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        main {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .blog-posts {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .post {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            animation: fadeInUp 0.8s ease-out;
+            animation-fill-mode: both;
+        }
+
+        .post:nth-child(1) { animation-delay: 0.1s; }
+        .post:nth-child(2) { animation-delay: 0.2s; }
+        .post:nth-child(3) { animation-delay: 0.3s; }
+
+        @keyframes fadeInUp {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .post:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .post h2 {
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+            font-size: 1.8rem;
+        }
+
+        .post-meta {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .post-meta::before {
+            content: "📅";
+        }
+
+        .post-content {
+            color: #555;
+            line-height: 1.8;
+        }
+
+        .read-more {
+            display: inline-block;
+            margin-top: 1rem;
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .read-more:hover {
+            color: #764ba2;
+            transform: translateX(5px);
+        }
+
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .widget {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 1.5rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            animation: fadeInRight 0.8s ease-out;
+            animation-fill-mode: both;
+        }
+
+        .widget:nth-child(1) { animation-delay: 0.4s; }
+        .widget:nth-child(2) { animation-delay: 0.5s; }
+        .widget:nth-child(3) { animation-delay: 0.6s; }
+
+        @keyframes fadeInRight {
+            from {
+                transform: translateX(50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .widget h3 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .widget ul {
+            list-style: none;
+        }
+
+        .widget ul li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .widget ul li:last-child {
+            border-bottom: none;
+        }
+
+        .widget ul li a {
+            text-decoration: none;
+            color: #555;
+            transition: color 0.3s ease;
+        }
+
+        .widget ul li a:hover {
+            color: #667eea;
+        }
+
+        .search-box {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #eee;
+            border-radius: 25px;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .search-box:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        footer {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            animation: fadeInUp 0.8s ease-out;
+            animation-delay: 0.7s;
+            animation-fill-mode: both;
+        }
+
+        @media (max-width: 768px) {
+            main {
+                grid-template-columns: 1fr;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .container {
+                padding: 10px;
+            }
+        }
+
+        .tag {
+            display: inline-block;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            margin: 0.2rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Mój Blog</h1>
+            <p class="subtitle">Dzielę się moimi przemyśleniami i doświadczeniami</p>
+            <nav>
+                <ul>
+                    <li><a href="#home">Strona główna</a></li>
+                    <li><a href="#about">O mnie</a></li>
+                    <li><a href="#contact">Kontakt</a></li>
+                    <li><a href="#archive">Archiwum</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <section class="blog-posts">
+                <article class="post">
+                    <h2>Pierwsza przygoda z programowaniem</h2>
+                    <div class="post-meta">
+                        <span>10 sierpnia 2025</span>
+                        <span class="tag">Programowanie</span>
+                        <span class="tag">Technologia</span>
+                    </div>
+                    <div class="post-content">
+                        <p>Dzisiaj chciałbym podzielić się z Wami moją pierwszą przygodą z programowaniem. To była fascynująca podróż, która zmieniła moje spojrzenie na technologię i możliwości tworzenia. Wszystko zaczęło się od prostego "Hello World"...</p>
+                    </div>
+                    <a href="#" class="read-more">Czytaj dalej →</a>
+                </article>
+
+                <article class="post">
+                    <h2>Jak zorganizować swój dzień pracy</h2>
+                    <div class="post-meta">
+                        <span>8 sierpnia 2025</span>
+                        <span class="tag">Produktywność</span>
+                        <span class="tag">Lifestyle</span>
+                    </div>
+                    <div class="post-content">
+                        <p>Efektywne zarządzanie czasem to klucz do sukcesu w dzisiejszym świecie. W tym poście dzielę się sprawdzonymi metodami na organizację dnia pracy, które pomogły mi zwiększyć produktywność o 200%...</p>
+                    </div>
+                    <a href="#" class="read-more">Czytaj dalej →</a>
+                </article>
+
+                <article class="post">
+                    <h2>Najlepsze miejsca na weekend w Polsce</h2>
+                    <div class="post-meta">
+                        <span>5 sierpnia 2025</span>
+                        <span class="tag">Podróże</span>
+                        <span class="tag">Polska</span>
+                    </div>
+                    <div class="post-content">
+                        <p>Polska to kraj pełen niesamowitych miejsc, które idealnie nadają się na weekendowy wypoczynek. Od górskich szlaków po nadmorskie plaże - każdy znajdzie coś dla siebie. Oto moja lista must-see miejsc...</p>
+                    </div>
+                    <a href="#" class="read-more">Czytaj dalej →</a>
+                </article>
+            </section>
+
+            <aside class="sidebar">
+                <div class="widget">
+                    <h3>Wyszukaj</h3>
+                    <input type="text" class="search-box" placeholder="Szukaj artykułów...">
+                </div>
+
+                <div class="widget">
+                    <h3>Najnowsze posty</h3>
+                    <ul>
+                        <li><a href="#">Pierwsza przygoda z programowaniem</a></li>
+                        <li><a href="#">Jak zorganizować swój dzień pracy</a></li>
+                        <li><a href="#">Najlepsze miejsca na weekend w Polsce</a></li>
+                        <li><a href="#">10 książek, które warto przeczytać</a></li>
+                        <li><a href="#">Sekrety dobrej fotografii</a></li>
+                    </ul>
+                </div>
+
+
+
+                <div class="widget">
+                    <h3>O autorze</h3>
+                    <p>Jestem pasjonatem technologii, podróży i dzielenia się wiedzą. Na tym blogu znajdziesz moje przemyślenia na temat programowania, produktywności i życia.</p>
+                </div>
+            </aside>
+        </main>
+
+        <footer>
+            <p>&copy; 2025 Mój Blog. Wszystkie prawa zastrzeżone.</p>
+            <p>Stworzone z ❤️ w Polsce</p>
+        </footer>
+    </div>
+
+    <script>
+        // Prosta animacja dla search box
+        const searchBox = document.querySelector('.search-box');
+        searchBox.addEventListener('focus', function() {
+            this.style.transform = 'scale(1.02)';
+        });
+        
+        searchBox.addEventListener('blur', function() {
+            this.style.transform = 'scale(1)';
+        });
+
+        // Smooth scroll dla linków nawigacyjnych
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                if (this.getAttribute('href').startsWith('#')) {
+                    e.preventDefault();
+                    // Tu można dodać logikę dla smooth scroll
+                }
+            });
+        });
+
+        // Dynamiczne ładowanie dla "Czytaj dalej"
+        document.querySelectorAll('.read-more').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                this.textContent = 'Ładowanie...';
+                setTimeout(() => {
+                    this.textContent = 'Czytaj dalej →';
+                }, 1000);
+            });
+        });
+    </script>
+</body>
+  </html>

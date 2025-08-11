@@ -293,6 +293,14 @@
             }
         }
 
+        .no-posts {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            animation: fadeInUp 0.8s ease-out;
+        }
+
         .tag {
             display: inline-block;
             background: linear-gradient(45deg, #667eea, #764ba2);
@@ -321,44 +329,14 @@
 
         <main>
             <section class="blog-posts">
-                <article class="post">
-                    <h2>Pierwsza przygoda z programowaniem</h2>
-                    <div class="post-meta">
-                        <span>10 sierpnia 2025</span>
-                        <span class="tag">Programowanie</span>
-                        <span class="tag">Technologia</span>
+                <div class="no-posts">
+                    <div style="text-align: center; padding: 4rem 2rem; color: #7f8c8d;">
+                        <div style="font-size: 4rem; margin-bottom: 1rem;">📝</div>
+                        <h3 style="margin-bottom: 1rem; color: #2c3e50;">Brak wpisów</h3>
+                        <p>Wygląda na to, że nie ma jeszcze żadnych wpisów na tym blogu.</p>
+                        <p style="margin-top: 0.5rem;">Użyj panelu administratora, aby dodać pierwszy wpis!</p>
                     </div>
-                    <div class="post-content">
-                        <p>Dzisiaj chciałbym podzielić się z Wami moją pierwszą przygodą z programowaniem. To była fascynująca podróż, która zmieniła moje spojrzenie na technologię i możliwości tworzenia. Wszystko zaczęło się od prostego "Hello World"...</p>
-                    </div>
-                    <a href="#" class="read-more">Czytaj dalej →</a>
-                </article>
-
-                <article class="post">
-                    <h2>Jak zorganizować swój dzień pracy</h2>
-                    <div class="post-meta">
-                        <span>8 sierpnia 2025</span>
-                        <span class="tag">Produktywność</span>
-                        <span class="tag">Lifestyle</span>
-                    </div>
-                    <div class="post-content">
-                        <p>Efektywne zarządzanie czasem to klucz do sukcesu w dzisiejszym świecie. W tym poście dzielę się sprawdzonymi metodami na organizację dnia pracy, które pomogły mi zwiększyć produktywność o 200%...</p>
-                    </div>
-                    <a href="#" class="read-more">Czytaj dalej →</a>
-                </article>
-
-                <article class="post">
-                    <h2>Najlepsze miejsca na weekend w Polsce</h2>
-                    <div class="post-meta">
-                        <span>5 sierpnia 2025</span>
-                        <span class="tag">Podróże</span>
-                        <span class="tag">Polska</span>
-                    </div>
-                    <div class="post-content">
-                        <p>Polska to kraj pełen niesamowitych miejsc, które idealnie nadają się na weekendowy wypoczynek. Od górskich szlaków po nadmorskie plaże - każdy znajdzie coś dla siebie. Oto moja lista must-see miejsc...</p>
-                    </div>
-                    <a href="#" class="read-more">Czytaj dalej →</a>
-                </article>
+                </div>
             </section>
 
             <aside class="sidebar">
@@ -369,13 +347,9 @@
 
                 <div class="widget">
                     <h3>Najnowsze posty</h3>
-                    <ul>
-                        <li><a href="#">Pierwsza przygoda z programowaniem</a></li>
-                        <li><a href="#">Jak zorganizować swój dzień pracy</a></li>
-                        <li><a href="#">Najlepsze miejsca na weekend w Polsce</a></li>
-                        <li><a href="#">10 książek, które warto przeczytać</a></li>
-                        <li><a href="#">Sekrety dobrej fotografii</a></li>
-                    </ul>
+                    <div style="text-align: center; color: #999; padding: 2rem 0;">
+                        <p>Brak wpisów do wyświetlenia</p>
+                    </div>
                 </div>
 
 
@@ -426,4 +400,4 @@
         });
     </script>
 </body>
-  </html>
+</html>
